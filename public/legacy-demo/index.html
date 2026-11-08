@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#040406">
+    <meta name="description" content="Tarek's Smart Fitness Gym & Premium Leather Wallet Zone - Interactive 3D Experience in Brahmanbaria">
+    <title>তারেক'স স্মার্ট ফিটনেস জোন | Tarek's 3D Smart Fitness & Wallet Zone</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Main 3D & Dynamic Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ==========================================================================
+         GLOBAL 3D AMBIENT PARTICLE FIELD & CYBER GRID OVERLAY
+         ========================================================================== -->
+    <canvas id="bg-particles-canvas"></canvas>
+    <div class="cyber-grid-overlay"></div>
+
+    <!-- ==========================================================================
+         TOP NAVIGATION BAR
+         ========================================================================== -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a class="brand" data-target="home">
+                <div class="brand-icon"><i class="fas fa-dumbbell"></i></div>
+                <div class="brand-text">
+                    <div class="brand-title">TAREK'S <span style="color:var(--primary);font-size:0.85rem;">3D</span></div>
+                    <div class="brand-subtitle">Smart Fitness Zone</div>
+                </div>
+            </a>
+
+            <!-- Desktop Menu -->
+            <ul class="nav-menu">
+                <li class="nav-item"><a class="nav-link active" data-target="home"><i class="fas fa-cube"></i> হোম ও 3D জোন</a></li>
+                <li class="nav-item"><a class="nav-link" data-target="services"><i class="fas fa-heartbeat"></i> সার্ভিস ও 3D BMI</a></li>
+                <li class="nav-item"><a class="nav-link gold-link" data-target="wallets"><i class="fas fa-crown"></i> 3D ওয়ালেট জোন</a></li>
+                <li class="nav-item"><a class="nav-link" data-target="pricing"><i class="fas fa-bolt"></i> প্যাকেজসমূহ</a></li>
+                <li class="nav-item">
+                    <button class="btn btn-primary btn-sm" onclick="app.navigate('portal')">
+                        <i class="fas fa-id-card-alt"></i> 3D মেম্বার পোর্টাল
+                    </button>
+                </li>
+            </ul>
+
+            <!-- Mobile Utilities -->
+            <div class="mobile-nav-utils">
+                <div class="cart-trigger" onclick="cartApp.openCart()" id="top-cart-trigger">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-badge" id="top-cart-count">0</span>
+                </div>
+                <a href="tel:01714712585" class="btn btn-outline-primary btn-sm">
+                    <i class="fas fa-phone-alt"></i> কল
+                </a>
+            </div>
+
+            <!-- Desktop Cart Trigger -->
+            <div class="nav-menu">
+                <div class="cart-trigger" onclick="cartApp.openCart()" id="desktop-cart-trigger" title="Shopping Bag">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-badge" id="desktop-cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- FLOATING WHATSAPP BUTTON -->
+    <a href="https://wa.me/+8801714712585" target="_blank" class="fab-wa" title="WhatsApp Us">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- ==========================================================================
+         MAIN SPA VIEWS CONTAINER
+         ========================================================================== -->
+    <div id="main-content">
+
+        <!-- ----------------------------------------------------------------------
+             VIEW 1: HOME (INTERACTIVE 3D HERO + VIRTUAL ZONE EXPLORER)
+             ---------------------------------------------------------------------- -->
+        <main id="view-home" class="spa-view active-view">
+            <section class="hero">
+                <div class="hero-bg-glow"></div>
+                <div class="container">
+                    <div class="hero-grid">
+                        <!-- Left Hero Pitch -->
+                        <div class="hero-content">
+                            <div class="hero-badges-row">
+                                <div class="location-badge">
+                                    <i class="fas fa-map-marker-alt"></i> বোর্ডিং মাঠ, ব্রাহ্মণবাড়িয়া
+                                </div>
+                                <div class="badge badge-live">
+                                    <span class="pulse-dot"></span>
+                                    <span id="live-gym-status-text">07:00 AM - 11:00 PM</span>
+                                </div>
+                            </div>
+
+                            <h1 class="hero-title">
+                                নিজেকে গড়ুন <br>
+                                <span class="outline-text">নতুন 3D রূপে</span>
+                                <span class="primary-text">আজই যুক্ত হোন</span>
+                            </h1>
+
+                            <p class="hero-desc">
+                                অত্যাধুনিক ইমপোর্টেড ইকুইপমেন্ট, ব্রাহ্মণবাড়িয়ায় প্রথমবার <b>StairMaster</b>, সার্টিফাইড প্রো-ট্রেইনার এবং এক্সক্লুসিভ লেদার ওয়ালেট জোন নিয়ে <b>তারেক'স স্মার্ট ফিটনেস জিম</b> আপনাকে স্বাগতম জানাচ্ছে।
+                            </p>
+
+                            <div class="hero-actions">
+                                <button class="btn btn-primary btn-lg" onclick="app.navigate('pricing')">
+                                    <i class="fas fa-bolt"></i> মেম্বারশিপ প্যাকেজ
+                                </button>
+                                <button class="btn btn-outline-gold btn-lg" onclick="app.navigate('wallets')">
+                                    <i class="fas fa-crown"></i> 3D ওয়ালেট জোন
+                                </button>
+                                <a href="https://www.facebook.com/share/v/1C557R3JcS/" target="_blank" class="btn btn-outline-primary btn-lg">
+                                    <i class="fab fa-facebook-square"></i> জিম ভিডিও ট্যুর
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Right Interactive WebGL 3D Equipment Stage -->
+                        <div class="hero-3d-stage tilt-card">
+                            <div class="stage-hud-top">
+                                <span class="hud-tag"><i class="fas fa-hand-pointer"></i> Drag to Rotate 360°</span>
+                                <button class="model-switch-btn" id="explode-toggle-btn" style="pointer-events:auto;" onclick="hero3D.toggleExplode()">
+                                    <i class="fas fa-expand-arrows-alt"></i> Explode 3D
+                                </button>
+                            </div>
+
+                            <!-- Three.js WebGL Canvas -->
+                            <canvas id="hero-3d-canvas"></canvas>
+
+                            <div class="stage-controls-bottom">
+                                <button class="model-switch-btn active" data-model="dumbbell" onclick="hero3D.loadModel('dumbbell')">
+                                    <i class="fas fa-dumbbell"></i> 3D Dumbbell
+                                </button>
+                                <button class="model-switch-btn" data-model="stairmaster" onclick="hero3D.loadModel('stairmaster')">
+                                    <i class="fas fa-walking"></i> 3D StairMaster
+                                </button>
+                                <button class="model-switch-btn" data-model="kettlebell" onclick="hero3D.loadModel('kettlebell')">
+                                    <i class="fas fa-weight-hanging"></i> 3D Kettlebell
+                                </button>
+                                <button class="model-switch-btn" data-model="core" onclick="hero3D.loadModel('core')">
+                                    <i class="fas fa-atom"></i> Cyber Core
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4-Column Floating Stats Strip -->
+            <section class="stats-bar">
+                <div class="container">
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-icon"><i class="fas fa-clock"></i></div>
+                            <div class="stat-number" style="font-size: 1.45rem;">07:00 AM - 11:00 PM</div>
+                            <div class="stat-label">প্রতিদিনের সময়সূচী</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon"><i class="fas fa-users"></i></div>
+                            <div class="stat-number">৫০০+</div>
+                            <div class="stat-label">সন্তুষ্ট অ্যাক্টিভ মেম্বার</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon"><i class="fas fa-fire"></i></div>
+                            <div class="stat-number">1st in B-Baria</div>
+                            <div class="stat-label">এক্সক্লুসিভ StairMaster</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon"><i class="fas fa-phone-volume"></i></div>
+                            <div class="stat-number" style="font-size: 1.65rem;">01714-712585</div>
+                            <div class="stat-label">সরাসরি হটলাইন</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Interactive 3D Gym Floor & Zone Explorer -->
+            <section class="section">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-subtitle"><i class="fas fa-vr-cardboard"></i> Interactive Gym Tour</span>
+                        <h2>ইন্টারেক্টিভ <span class="text-primary">ফিটনেস জোন এক্সপ্লোরার</span></h2>
+                        <p>যেকোনো জোনে ক্লিক করে আমাদের অত্যাধুনিক মেশিনারি, সুবিধা এবং 3D ভিউ সম্পর্কে বিস্তারিত জানুন।</p>
+                    </div>
+
+                    <div class="zone-explorer-wrap">
+                        <div class="zone-tabs" id="zone-tabs-container">
+                            <!-- Injected by script.js -->
+                        </div>
+                        <div class="zone-stage-display" id="zone-stage-container">
+                            <!-- Injected by script.js -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3D Tilt Highlight Cards -->
+            <section class="section pt-0">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-subtitle"><i class="fas fa-medal"></i> কেন আমরা সেরা?</span>
+                        <h2>আমাদের <span class="text-primary">বিশেষত্ব</span></h2>
+                        <p>ব্রাহ্মণবাড়িয়ার বুকে আন্তর্জাতিক মানের ফিটনেস অভিজ্ঞতা দিতে আমরা প্রতিশ্রুতিবদ্ধ।</p>
+                    </div>
+
+                    <div class="grid grid-cols-3">
+                        <div class="card feature-card tilt-card">
+                            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=600&q=80" alt="Modern Equipment" class="feature-card-img">
+                            <div class="feature-card-overlay tilt-depth">
+                                <span class="badge badge-primary mb-2" style="width:fit-content;">Pro Series</span>
+                                <h3>মডার্ন ইকুইপমেন্ট</h3>
+                                <p>সম্পূর্ণ নতুন এবং ইমপোর্টেড বায়োমেকানিক্যাল ফিটনেস মেশিনারি।</p>
+                            </div>
+                        </div>
+                        <div class="card feature-card tilt-card">
+                            <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=600&q=80" alt="StairMaster" class="feature-card-img">
+                            <div class="feature-card-overlay tilt-depth">
+                                <span class="badge badge-gold mb-2" style="width:fit-content;">Exclusive</span>
+                                <h3>এডভান্সড কার্ডিও (StairMaster)</h3>
+                                <p>ব্রাহ্মণবাড়িয়ায় প্রথমবার স্টেয়ার ক্লাইম্বার (StairMaster) ও হাই-টেক কার্ডিও।</p>
+                            </div>
+                        </div>
+                        <div class="card feature-card tilt-card">
+                            <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&w=600&q=80" alt="Personal Training" class="feature-card-img">
+                            <div class="feature-card-overlay tilt-depth">
+                                <span class="badge badge-live mb-2" style="width:fit-content;">Certified</span>
+                                <h3>প্রো ট্রেইনার গাইডেন্স</h3>
+                                <p>প্রতিটি মেম্বারের জন্য সঠিক গাইডলাইন, ওয়ার্কআউট এবং ডায়েট রুটিন।</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Luxury 3D Wallet Promo Banner -->
+            <section class="promo-banner">
+                <div class="container promo-content">
+                    <div class="promo-text">
+                        <span class="section-subtitle gold"><i class="fas fa-crown"></i> Exclusive Leather Zone</span>
+                        <h2 style="font-size: 2.7rem; margin-bottom: 18px;">অরিজিনাল লেদার<br><span class="text-gold">3D ওয়ালেট কালেকশন</span></h2>
+                        <p style="color: #ddd; font-size: 1.08rem; max-width: 520px; margin-bottom: 28px;">
+                            ফিটনেসের পাশাপাশি আপনার পার্সোনালিটিকে আরও আকর্ষণীয় করতে আমরা নিয়ে এসেছি ইমপোর্টেড জেনুইন লেদার ওয়ালেটের এক্সক্লুসিভ কালেকশন—যা এখন 360° 3D ভিউতে দেখে অর্ডার করতে পারবেন!
+                        </p>
+                        <div class="d-flex flex-wrap gap-3">
+                            <button class="btn btn-gold btn-lg" onclick="app.navigate('wallets')">
+                                <i class="fas fa-cube"></i> 3D ওয়ালেট জোন দেখুন
+                            </button>
+                            <a href="https://www.facebook.com/share/r/1ECLMPa8uf/" target="_blank" class="btn btn-outline-gold btn-lg">
+                                <i class="fas fa-play-circle"></i> রিল ভিডিও দেখুন
+                            </a>
+                        </div>
+                    </div>
+                    <div class="promo-image">
+                        <img src="https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=600&q=80" alt="Premium Wallets">
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- ----------------------------------------------------------------------
+             VIEW 2: SERVICES & 3D BIOMETRIC BMI + MACRO CALCULATOR
+             ---------------------------------------------------------------------- -->
+        <main id="view-services" class="spa-view">
+            <section class="section">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-subtitle"><i class="fas fa-dumbbell"></i> আমাদের সুবিধাসমূহ</span>
+                        <h2>ফিটনেসের <span class="text-primary">সম্পূর্ণ 3D সল্যুশন</span></h2>
+                        <p>আপনার লক্ষ্যের সাথে মানানসই সেরা ট্রেনিং প্রোগ্রাম, মডার্ন ইকুইপমেন্ট এবং প্রো গাইডেন্স।</p>
+                    </div>
+
+                    <div class="grid grid-cols-2" id="services-grid">
+                        <!-- Populated by script.js -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3D Biometric BMI & Daily Macro Calculator -->
+            <section class="section pt-0">
+                <div class="container">
+                    <div class="bmi-card tilt-card">
+                        <div class="grid grid-cols-2 align-center">
+                            <div>
+                                <span class="section-subtitle"><i class="fas fa-dna"></i> 3D Biometric Scanner</span>
+                                <h2 class="mb-2">আপনার <span class="text-primary">BMI ও ক্যালরি</span> চেক করুন</h2>
+                                <p class="mb-4">আপনার ওজন, উচ্চতা ও বয়স দিয়ে জেনে নিন আপনার ফিটনেস স্ট্যাটাস, দৈনিক প্রয়োজনীয় ক্যালরি (TDEE) এবং প্রোটিন টার্গেট।</p>
+
+                                <div class="grid grid-cols-2 mb-3">
+                                    <div class="form-group mb-0">
+                                        <label class="form-label">ওজন (Weight in KG)</label>
+                                        <div class="input-icon-wrap">
+                                            <i class="fas fa-weight"></i>
+                                            <input type="number" id="bmi-weight" class="form-control" placeholder="উদা: 70" value="70">
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-0">
+                                        <label class="form-label">উচ্চতা (Height in CM)</label>
+                                        <div class="input-icon-wrap">
+                                            <i class="fas fa-ruler-vertical"></i>
+                                            <input type="number" id="bmi-height" class="form-control" placeholder="উদা: 170" value="170">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">বয়স (Age in Years)</label>
+                                    <div class="input-icon-wrap">
+                                        <i class="fas fa-user-clock"></i>
+                                        <input type="number" id="bmi-age" class="form-control" placeholder="উদা: 24" value="24">
+                                    </div>
+                                </div>
+
+                                <button class="btn btn-primary btn-block mt-3" onclick="app.calculateBMI()">
+                                    <i class="fas fa-calculator"></i> 3D বায়োমেট্রিক ফলাফল দেখুন
+                                </button>
+                            </div>
+
+                            <!-- 3D Biometric Core Visualizer & Output -->
+                            <div>
+                                <div id="bmi-result-box" class="bmi-result-box">
+                                    <canvas id="bmi-3d-canvas"></canvas>
+                                    <div id="bmi-dynamic-details" style="width: 100%;">
+                                        <h4 style="color: var(--text-secondary); margin-bottom: 4px;">3D Biometric Core Ready</h4>
+                                        <p style="font-size: 0.9rem; margin: 0;">বাম পাশের ফর্মে ওজন ও উচ্চতা দিয়ে বাটনে ক্লিক করুন</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- ----------------------------------------------------------------------
+             VIEW 3: WALLETS (3D INTERACTIVE LEATHER SHOWCASE + E-COMMERCE)
+             ---------------------------------------------------------------------- -->
+        <main id="view-wallets" class="spa-view">
+            <section class="wallet-hero">
+                <div class="container">
+                    <span class="badge badge-gold mb-3"><i class="fas fa-gem"></i> 100% Genuine Leather</span>
+                    <h1 class="text-gold">MEN'S EXCLUSIVE 3D WALLET ZONE</h1>
+                    <p style="font-size: 1.15rem; max-width: 650px; margin: 0 auto 26px; color: #eee;">
+                        আসল লেদারের আভিজাত্য, দীর্ঘস্থায়িত্ব এবং নিখুঁত ফিনিশিং। নিচে 3D ইনস্পেক্টরে ঘুরিয়ে দেখুন এবং আপনার পছন্দের ওয়ালেটটি অর্ডার করুন।
+                    </p>
+                    <a href="https://www.facebook.com/share/r/1ECLMPa8uf/" target="_blank" class="btn btn-gold btn-lg">
+                        <i class="fab fa-facebook"></i> কালেকশন রিল ভিডিও দেখুন
+                    </a>
+                </div>
+            </section>
+
+            <section class="section" style="background: #070604;">
+                <div class="container">
+
+                    <!-- Interactive 360° 3D Leather Wallet Inspector -->
+                    <div class="wallet-3d-showcase-bar" id="wallet-3d-inspector">
+                        <div class="wallet-3d-canvas-wrap">
+                            <div class="stage-hud-top" style="position:absolute; width:100%; top:0; left:0;">
+                                <span class="hud-tag" style="border-color:rgba(212,175,55,0.4);"><i class="fas fa-cube text-gold"></i> 360° 3D Leather Preview</span>
+                                <button class="model-switch-btn" style="pointer-events:auto; border-color:var(--gold); color:var(--gold-light);" onclick="wallet3D.toggleFold()">
+                                    <i class="fas fa-book-open"></i> Open / Fold Wallet
+                                </button>
+                            </div>
+                            <canvas id="wallet-3d-canvas"></canvas>
+                        </div>
+
+                        <div>
+                            <span class="badge badge-gold mb-2"><i class="fas fa-vr-cardboard"></i> Interactive 3D Customizer</span>
+                            <h3 class="text-white" id="wallet-3d-active-title" style="font-size: 1.85rem;">Premium Bifold Leather Edition</h3>
+                            <p style="color: #ccc; margin-bottom: 12px;">
+                                মাউস বা আঙুল দিয়ে ড্র্যাগ করে 3D ওয়ালেটটি ৩৬০ ডিগ্রি ঘুরিয়ে দেখুন এবং লেদার কালার ফিনিশ পরিবর্তন করে পরীক্ষা করুন:
+                            </p>
+                            <div class="swatch-row">
+                                <button class="color-swatch active" onclick="wallet3D.setColor(0x18181c, this)">Classic Black</button>
+                                <button class="color-swatch" onclick="wallet3D.setColor(0x5c3317, this)">Vintage Brown</button>
+                                <button class="color-swatch" onclick="wallet3D.setColor(0x9c6228, this)">Minimalist Tan</button>
+                                <button class="color-swatch" onclick="wallet3D.setColor(0x22252a, this)">Carbon Sport</button>
+                            </div>
+                            <div class="d-flex gap-3 flex-wrap">
+                                <button class="btn btn-gold" onclick="cartApp.addToCart('W101')">
+                                    <i class="fas fa-shopping-bag"></i> ব্যাগে যোগ করুন (৳১,২৫০)
+                                </button>
+                                <button class="btn btn-outline-gold" onclick="wallet3D.toggleFold()">
+                                    <i class="fas fa-sync-alt"></i> ভাঁজ খুলুন / বন্ধ করুন
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category Filter Bar -->
+                    <div class="wallet-filter-bar">
+                        <button class="filter-btn active" data-filter="all">সব দেখুন (All)</button>
+                        <button class="filter-btn" data-filter="bifold">বাইফোল্ড (Bifold)</button>
+                        <button class="filter-btn" data-filter="long">লং ওয়ালেট (Long)</button>
+                        <button class="filter-btn" data-filter="cardholder">কার্ড হোল্ডার (Cardholder)</button>
+                    </div>
+
+                    <!-- Wallet Products Grid -->
+                    <div class="grid grid-cols-4" id="wallet-products-grid">
+                        <!-- Injected by script.js -->
+                    </div>
+
+                    <!-- Direct Order Hotline -->
+                    <div class="text-center mt-5 pt-4" style="border-top: 1px solid rgba(212,175,55,0.2);">
+                        <p style="font-size: 1.1rem; color: var(--text-secondary);">যেকোনো ওয়ালেট অর্ডার করতে বা বিস্তারিত জানতে সরাসরি কল করুন</p>
+                        <a href="tel:01714712585" class="text-gold mt-2" style="font-size: 2.1rem; font-weight: 700; font-family: var(--font-en); display: inline-flex; align-items: center; gap: 12px;">
+                            <i class="fas fa-phone-volume"></i> 01714-712585
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- ----------------------------------------------------------------------
+             VIEW 4: PRICING PACKAGES (3D PERSPECTIVE CARDS + DIRECT ENROLLMENT)
+             ---------------------------------------------------------------------- -->
+        <main id="view-pricing" class="spa-view">
+            <section class="section">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-subtitle"><i class="fas fa-tags"></i> মেম্বারশিপ প্ল্যান</span>
+                        <h2>সাশ্রয়ী <span class="text-primary">প্যাকেজসমূহ</span></h2>
+                        <p>আপনার প্রয়োজন অনুযায়ী সঠিক প্যাকেজটি বেছে নিন এবং অনলাইনেই আপনার 3D মেম্বারশিপ আইডি অ্যাক্টিভ করুন।</p>
+                    </div>
+
+                    <div class="grid grid-cols-3 align-center">
+                        <!-- Package 1: Lifetime Admission -->
+                        <div class="card pricing-card tilt-card">
+                            <div class="pricing-header tilt-depth">
+                                <h3 class="pricing-title">ভর্তি ফি (Admission)</h3>
+                                <div class="pricing-price">৳২,২৫০</div>
+                                <div class="pricing-duration">এককালীন (Life Time)</div>
+                            </div>
+                            <ul class="pricing-list tilt-depth">
+                                <li><i class="fas fa-check-circle"></i> আজীবন মেম্বারশিপ এক্সেস</li>
+                                <li><i class="fas fa-check-circle"></i> <b>১ম মাসের ফি সম্পূর্ণ ফ্রী</b></li>
+                                <li><i class="fas fa-check-circle"></i> ডিজিটাল 3D আইডি ও প্রাথমিক ডায়েট চার্ট</li>
+                                <li><i class="fas fa-check-circle"></i> পার্সোনাল লকার সুবিধা</li>
+                            </ul>
+                            <button class="btn btn-outline-primary btn-block mt-auto" onclick="app.enrollPackage('ভর্তি ফি (১ম মাস ফ্রি সহ)', 2250)">
+                                <i class="fas fa-user-plus"></i> ভর্তি নিশ্চিত করুন
+                            </button>
+                        </div>
+
+                        <!-- Package 2: Premium Package (Most Popular) -->
+                        <div class="card pricing-card premium tilt-card">
+                            <div class="popular-badge"><i class="fas fa-star text-warning"></i> মোস্ট পপুলার</div>
+                            <div class="pricing-header tilt-depth">
+                                <h3 class="pricing-title text-primary">প্রিমিয়াম প্যাকেজ</h3>
+                                <div class="pricing-price">৳১,২০০</div>
+                                <div class="pricing-duration">প্রতি মাস (Monthly)</div>
+                            </div>
+                            <ul class="pricing-list tilt-depth">
+                                <li><i class="fas fa-check-circle"></i> সম্পূর্ণ স্ট্রেন্থ ও ফ্রি-ওয়েটস এরিয়া এক্সেস</li>
+                                <li><i class="fas fa-check-circle"></i> এডভান্সড মেশিনারি এক্সেস</li>
+                                <li class="pro-feature"><i class="fas fa-crown"></i> <b>স্টেয়ার ক্লাইম্বার (StairMaster) এক্সেস</b></li>
+                                <li><i class="fas fa-check-circle"></i> হাই-ইনটেনসিটি কার্ডিও সেশন</li>
+                                <li><i class="fas fa-check-circle"></i> প্রো-ট্রেইনার গাইডেন্স ও ডায়েট চার্ট</li>
+                            </ul>
+                            <button class="btn btn-primary btn-block mt-auto" onclick="app.enrollPackage('প্রিমিয়াম প্যাকেজ (StairMaster সহ)', 1200)">
+                                <i class="fas fa-bolt"></i> প্রিমিয়াম বেছে নিন
+                            </button>
+                        </div>
+
+                        <!-- Package 3: Regular Package -->
+                        <div class="card pricing-card tilt-card">
+                            <div class="pricing-header tilt-depth">
+                                <h3 class="pricing-title">রেগুলার প্যাকেজ</h3>
+                                <div class="pricing-price">৳৮৩০</div>
+                                <div class="pricing-duration">প্রতি মাস (Monthly)</div>
+                            </div>
+                            <ul class="pricing-list tilt-depth">
+                                <li><i class="fas fa-check-circle"></i> প্রতিদিন জিম এক্সেস (7 AM - 11 PM)</li>
+                                <li><i class="fas fa-check-circle"></i> বেসিক কার্ডিও ও ওয়েট লিফটিং</li>
+                                <li><i class="fas fa-check-circle"></i> জেনারেল ট্রেইনার গাইডেন্স</li>
+                                <li class="disabled"><i class="fas fa-times-circle"></i> স্টেয়ার ক্লাইম্বার (StairMaster) এক্সেস নেই</li>
+                            </ul>
+                            <button class="btn btn-outline-primary btn-block mt-auto" onclick="app.enrollPackage('রেগুলার প্যাকেজ', 830)">
+                                <i class="fas fa-check"></i> রেগুলার বেছে নিন
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- ----------------------------------------------------------------------
+             VIEW 5: MEMBER PORTAL (3D HOLOGRAPHIC ID CARD & WORKOUT TRACKER)
+             ---------------------------------------------------------------------- -->
+        <main id="view-portal" class="spa-view">
+            <section class="section-sm">
+                <div class="container">
+
+                    <!-- Top Row: 3D Holographic Member ID Card + Quick Membership Action -->
+                    <div class="portal-top-grid">
+                        <div class="member-3d-card tilt-card">
+                            <div class="id-card-top tilt-depth">
+                                <div class="d-flex align-center gap-2">
+                                    <div class="brand-icon" style="width:36px;height:36px;font-size:1rem;"><i class="fas fa-dumbbell"></i></div>
+                                    <div>
+                                        <div class="brand-title" style="font-size:1.1rem;">TAREK'S SMART FITNESS</div>
+                                        <div style="font-size:0.7rem;color:var(--gold);">3D HOLOGRAPHIC MEMBER PASS</div>
+                                    </div>
+                                </div>
+                                <div class="id-chip"><i class="fas fa-microchip"></i></div>
+                            </div>
+
+                            <div class="id-card-middle tilt-depth-deep">
+                                <div class="id-member-name" id="portal-member-name">গেস্ট মেম্বার (Guest Member)</div>
+                                <div class="id-member-number" id="portal-member-id">ID: TSF-2026-8842</div>
+                            </div>
+
+                            <div class="id-card-bottom tilt-depth">
+                                <div>
+                                    <span style="display:block;font-size:0.72rem;color:var(--text-muted);">ACTIVE PACKAGE</span>
+                                    <strong style="color:#fff;" id="portal-member-plan">প্রিমিয়াম ট্রায়াল পাস</strong>
+                                </div>
+                                <div>
+                                    <span class="badge badge-live"><span class="pulse-dot"></span> ACTIVE PASS</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quick Enrollment / Notice Card -->
+                        <div class="card tilt-card" style="justify-content: center;">
+                            <span class="badge badge-primary mb-2" style="width:fit-content;"><i class="fas fa-bullhorn"></i> মেম্বারশিপ ডেস্কে স্বাগতম</span>
+                            <h3>আপনার ফিটনেস জার্নি ট্র্যাক করুন</h3>
+                            <p style="font-size: 0.95rem; margin-bottom: 18px;">
+                                প্যাকেজ পেইজ থেকে অনলাইনে বিকাশ/নগদ বা ক্যাশে রেজিস্ট্রেশন করলেই আপনার নাম ও প্যাক এই <b>3D Holographic ID Card</b>-এ যুক্ত হয়ে যাবে।
+                            </p>
+                            <div class="d-flex gap-2 flex-wrap">
+                                <button class="btn btn-primary btn-sm" onclick="app.navigate('pricing')">
+                                    <i class="fas fa-bolt"></i> প্যাকেজ আপগ্রেড করুন
+                                </button>
+                                <a href="tel:01714712585" class="btn btn-outline-primary btn-sm">
+                                    <i class="fas fa-phone-alt"></i> 01714-712585
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Main Portal Grid: Interactive Workout Checklist + Attendance -->
+                    <div class="portal-grid">
+                        <!-- Interactive Workout Logger -->
+                        <div class="card">
+                            <div class="d-flex justify-between align-center flex-wrap gap-2 mb-2">
+                                <h4 class="m-0"><i class="fas fa-clipboard-check text-primary"></i> আজকের ওয়ার্কআউট রুটিন (ক্লিক করে টিক দিন)</h4>
+                                <span class="badge badge-live font-en" id="workout-progress-label">1/6 Completed</span>
+                            </div>
+                            <table class="routine-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width:45px;">Done</th>
+                                        <th>Exercise Name</th>
+                                        <th>Sets</th>
+                                        <th>Reps / Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="routine-tbody">
+                                    <!-- Populated by script.js -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Side Column: Interactive Weekly Attendance & Support -->
+                        <div class="d-flex flex-column gap-4">
+                            <div class="card">
+                                <h4><i class="fas fa-calendar-check text-primary"></i> এই সপ্তাহের হাজিরা (ক্লিক করে পরিবর্তন করুন)</h4>
+                                <p style="font-size:0.85rem; margin-bottom:5px;">দিনে ক্লিক করে আপনার উপস্থিতি মার্ক করুন:</p>
+                                <div class="attendance-days">
+                                    <div class="day-box present" onclick="app.toggleAttendanceDay(this)"><span>S</span><i class="fas fa-check"></i></div>
+                                    <div class="day-box present" onclick="app.toggleAttendanceDay(this)"><span>M</span><i class="fas fa-check"></i></div>
+                                    <div class="day-box present" onclick="app.toggleAttendanceDay(this)"><span>T</span><i class="fas fa-check"></i></div>
+                                    <div class="day-box absent" onclick="app.toggleAttendanceDay(this)"><span>W</span><i class="fas fa-times"></i></div>
+                                    <div class="day-box present" onclick="app.toggleAttendanceDay(this)"><span>T</span><i class="fas fa-check"></i></div>
+                                    <div class="day-box" onclick="app.toggleAttendanceDay(this)"><span>F</span><i class="fas fa-minus"></i></div>
+                                    <div class="day-box" onclick="app.toggleAttendanceDay(this)"><span>S</span><i class="fas fa-minus"></i></div>
+                                </div>
+                            </div>
+
+                            <div class="card" style="text-align: center;">
+                                <div style="width: 56px; height: 56px; background: rgba(255,30,30,0.12); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: var(--primary); margin: 0 auto 12px;">
+                                    <i class="fas fa-headset"></i>
+                                </div>
+                                <h4>সরাসরি কোচ ও সাপোর্ট সেন্টার</h4>
+                                <p style="font-size: 0.9rem; margin-bottom: 12px;">ডায়েট বা ওয়ার্কআউট নিয়ে যেকোনো প্রশ্নে কল বা ইনবক্স করুন</p>
+                                <a href="tel:01714712585" class="text-primary font-en" style="font-size: 1.5rem; font-weight: bold; display: block; margin-bottom: 14px;">01714-712585</a>
+                                <a href="https://www.facebook.com/profile.php?id=100082921402163" target="_blank" class="btn btn-outline-primary btn-block btn-sm">
+                                    <i class="fab fa-facebook"></i> ফেসবুকে মেসেজ দিন
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- ==========================================================================
+         FOOTER
+         ========================================================================== -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <a class="brand mb-3" data-target="home">
+                        <div class="brand-icon"><i class="fas fa-dumbbell"></i></div>
+                        <div class="brand-text">
+                            <div class="brand-title">TAREK'S 3D</div>
+                            <div class="brand-subtitle">Smart Fitness Zone</div>
+                        </div>
+                    </a>
+                    <p style="max-width: 340px;">ব্রাহ্মণবাড়িয়ার অন্যতম সেরা এবং অত্যাধুনিক 3D স্মার্ট ফিটনেস সেন্টার ও প্রিমিয়াম লেদার ওয়ালেট জোন।</p>
+                    <div class="social-bar">
+                        <a href="https://www.facebook.com/profile.php?id=100082921402163" target="_blank" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://wa.me/+8801714712585" target="_blank" class="social-btn"><i class="fab fa-whatsapp"></i></a>
+                        <a href="tel:01714712585" class="social-btn"><i class="fas fa-phone-alt"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="footer-title">কুইক লিংকস</h3>
+                    <ul class="footer-links">
+                        <li><a onclick="app.navigate('home')">হোম ও 3D জোন</a></li>
+                        <li><a onclick="app.navigate('services')">সার্ভিস ও 3D BMI</a></li>
+                        <li><a onclick="app.navigate('pricing')">মেম্বারশিপ প্যাকেজ</a></li>
+                        <li><a onclick="app.navigate('portal')">3D মেম্বার পোর্টাল</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="footer-title gold-line text-gold">প্রিমিয়াম ওয়ালেট জোন</h3>
+                    <ul class="footer-links">
+                        <li><a onclick="app.navigate('wallets')">3D লেদার ওয়ালেট ভিউয়ার</a></li>
+                        <li><a onclick="app.navigate('wallets')">এক্সিকিউটিভ কার্ড হোল্ডার</a></li>
+                        <li><a href="https://www.facebook.com/share/r/1ECLMPa8uf/" target="_blank">কালেকশন ভিডিও</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="footer-title">যোগাযোগ</h3>
+                    <ul class="footer-contact">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong style="color: #fff; display: block;">ঠিকানা:</strong>
+                                বোর্ডিং মাঠ, ব্রাহ্মণবাড়িয়া সদর, ব্রাহ্মণবাড়িয়া।
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone-alt"></i>
+                            <div>
+                                <strong style="color: #fff; display: block;">হটলাইন:</strong>
+                                <a href="tel:01714712585" class="font-en" style="color: var(--primary); font-size: 1.2rem; font-weight: bold;">01714-712585</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Tarek's Smart Fitness Gym & Exclusive Wallet Zone. Powered by Interactive 3D WebGL.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================================================
+         BOTTOM APP BAR (MOBILE)
+         ========================================================================== -->
+    <nav class="bottom-nav">
+        <a class="bottom-nav-item active" data-target="home">
+            <i class="fas fa-cube"></i><span>3D হোম</span>
+        </a>
+        <a class="bottom-nav-item" data-target="services">
+            <i class="fas fa-dumbbell"></i><span>সার্ভিস</span>
+        </a>
+        <a class="bottom-nav-item gold-item" data-target="wallets">
+            <i class="fas fa-crown"></i><span>ওয়ালেট</span>
+        </a>
+        <a class="bottom-nav-item" data-target="pricing">
+            <i class="fas fa-tags"></i><span>প্যাকেজ</span>
+        </a>
+        <a class="bottom-nav-item" data-target="portal">
+            <i class="fas fa-id-card-alt"></i><span>পোর্টাল</span>
+        </a>
+    </nav>
+
+    <!-- ==========================================================================
+         SHOPPING CART SIDEBAR & UNIFIED CHECKOUT MODAL
+         ========================================================================== -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3 class="cart-title"><i class="fas fa-shopping-bag"></i> আপনার ব্যাগ</h3>
+            <button class="cart-close" onclick="cartApp.closeCart()"><i class="fas fa-times"></i></button>
+        </div>
+
+        <div class="cart-body" id="cart-items-container">
+            <div class="empty-cart" id="empty-cart-msg">
+                <i class="fas fa-shopping-basket"></i>
+                <h4>ব্যাগ সম্পূর্ণ খালি!</h4>
+                <p>আমাদের প্রিমিয়াম 3D ওয়ালেট কালেকশন থেকে পছন্দ করুন।</p>
+                <button class="btn btn-outline-gold mt-3" onclick="cartApp.closeCart(); app.navigate('wallets');">কালেকশন দেখুন</button>
+            </div>
+        </div>
+
+        <div class="cart-footer">
+            <div class="cart-summary-row">
+                <span>সাবটোটাল:</span>
+                <span id="cart-subtotal" class="font-en">৳০</span>
+            </div>
+            <div class="cart-summary-row">
+                <span>ডেলিভারি চার্জ:</span>
+                <span class="font-en">৳৬০</span>
+            </div>
+            <div class="cart-summary-total">
+                <span>সর্বমোট:</span>
+                <span id="cart-total" class="val">৳০</span>
+            </div>
+            <button class="btn btn-gold btn-block mt-3" id="checkout-btn" onclick="checkoutApp.openCheckout()" disabled>
+                <i class="fas fa-lock"></i> নিরাপদ চেকআউট
+            </button>
+        </div>
+    </div>
+
+    <!-- Unified Checkout & Membership Payment Modal -->
+    <div class="modal-overlay" id="checkout-modal-overlay">
+        <div class="checkout-modal">
+            <div class="modal-header">
+                <h3 class="modal-title"><i class="fas fa-shield-alt text-primary"></i> নিরাপদ চেকআউট ও পেমেন্ট</h3>
+                <i class="fas fa-times modal-close" onclick="checkoutApp.closeCheckout()"></i>
+            </div>
+
+            <div class="modal-body">
+                <div class="checkout-steps">
+                    <div class="step active" id="step-ind-1">
+                        <div class="step-icon">1</div>
+                        <span class="step-text">তথ্য</span>
+                    </div>
+                    <div class="step" id="step-ind-2">
+                        <div class="step-icon">2</div>
+                        <span class="step-text">পেমেন্ট</span>
+                    </div>
+                    <div class="step" id="step-ind-3">
+                        <div class="step-icon">3</div>
+                        <span class="step-text">নিশ্চিত</span>
+                    </div>
+                </div>
+
+                <!-- Step 1 -->
+                <div class="checkout-panel active" id="panel-1">
+                    <h4 class="mb-3">আপনার তথ্য দিন</h4>
+                    <div class="form-group">
+                        <label class="form-label">আপনার নাম *</label>
+                        <input type="text" class="form-control gold-focus" id="chk-name" placeholder="পুরো নাম লিখুন">
+                        <div class="form-error-msg" id="err-name">দয়া করে নাম দিন</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">মোবাইল নম্বর *</label>
+                        <div class="input-icon-wrap">
+                            <i class="fas fa-phone"></i>
+                            <input type="tel" class="form-control gold-focus" id="chk-phone" placeholder="01XXXXXXXXX" maxlength="11">
+                        </div>
+                        <div class="form-error-msg" id="err-phone">সঠিক ১১ ডিজিট নম্বর দিন</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">ঠিকানা / নোট *</label>
+                        <textarea class="form-control gold-focus" id="chk-address" style="min-height: 75px;" placeholder="বাসা নং, রোড, এলাকা, ব্রাহ্মণবাড়িয়া"></textarea>
+                        <div class="form-error-msg" id="err-address">ঠিকানা প্রয়োজন</div>
+                    </div>
+                    <button class="btn btn-gold btn-block mt-3" onclick="checkoutApp.goToStep(2)">
+                        পরবর্তী ধাপ <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="checkout-panel" id="panel-2">
+                    <h4 class="mb-2">পেমেন্ট মেথড নির্বাচন করুন</h4>
+                    <p style="font-size: 0.9rem;">সর্বমোট পরিমাণ: <strong class="text-gold font-en" id="gw-total-display" style="font-size: 1.25rem;">৳0</strong></p>
+
+                    <div class="payment-methods-grid">
+                        <label>
+                            <input type="radio" name="pay_method" value="bkash" class="payment-radio" onchange="checkoutApp.selectMethod('bkash')">
+                            <div class="payment-label bkash-label">
+                                <i class="fas fa-dove"></i>
+                                <span>bKash</span>
+                            </div>
+                        </label>
+                        <label>
+                            <input type="radio" name="pay_method" value="nagad" class="payment-radio" onchange="checkoutApp.selectMethod('nagad')">
+                            <div class="payment-label nagad-label">
+                                <i class="fas fa-fire"></i>
+                                <span>Nagad</span>
+                            </div>
+                        </label>
+                        <label>
+                            <input type="radio" name="pay_method" value="card" class="payment-radio" onchange="checkoutApp.selectMethod('card')">
+                            <div class="payment-label card-label">
+                                <i class="fas fa-credit-card"></i>
+                                <span>Visa / Master</span>
+                            </div>
+                        </label>
+                        <label>
+                            <input type="radio" name="pay_method" value="cod" class="payment-radio" onchange="checkoutApp.selectMethod('cod')" checked>
+                            <div class="payment-label cod-label">
+                                <i class="fas fa-hand-holding-usd"></i>
+                                <span>Cash / Pay at Gym</span>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- bKash Mock -->
+                    <div id="ui-bkash" class="gw-screen">
+                        <div class="gw-header">
+                            <strong style="color:var(--bkash);"><i class="fas fa-dove"></i> bKash Checkout</strong>
+                            <div class="gw-amount invoice-amount">৳0</div>
+                        </div>
+                        <input type="text" class="gw-input" id="bkash-acc" placeholder="bKash Account (01XXXXXXXXX)" maxlength="11">
+                        <input type="password" class="gw-input" id="bkash-pin" placeholder="PIN" maxlength="5">
+                        <button class="gw-btn" onclick="checkoutApp.processPayment('bkash')">CONFIRM PAYMENT</button>
+                    </div>
+
+                    <!-- Nagad Mock -->
+                    <div id="ui-nagad" class="gw-screen">
+                        <div class="gw-header">
+                            <strong style="color:var(--nagad);"><i class="fas fa-fire"></i> Nagad Checkout</strong>
+                            <div class="gw-amount invoice-amount" style="color:var(--nagad);">৳0</div>
+                        </div>
+                        <input type="text" class="gw-input" id="nagad-acc" placeholder="Nagad Account (01XXXXXXXXX)" maxlength="11">
+                        <input type="password" class="gw-input" id="nagad-pin" placeholder="PIN" maxlength="4">
+                        <button class="gw-btn" style="background:var(--nagad);" onclick="checkoutApp.processPayment('nagad')">CONFIRM PAYMENT</button>
+                    </div>
+
+                    <!-- Card Mock -->
+                    <div id="ui-card" class="gw-screen">
+                        <div class="gw-header">
+                            <strong style="color:var(--card-blue);"><i class="fab fa-cc-visa"></i> Card Payment</strong>
+                            <div class="gw-amount invoice-amount" style="color:var(--card-blue);">৳0</div>
+                        </div>
+                        <input type="text" class="gw-input" placeholder="Card Number (16 Digits)" maxlength="16">
+                        <button class="gw-btn" style="background:var(--card-blue);" onclick="checkoutApp.processPayment('card')">PAY NOW</button>
+                    </div>
+
+                    <!-- COD / Cash at Gym -->
+                    <div id="ui-cod" class="gw-screen" style="display:block; background:transparent; border:1px dashed var(--gold); color:#fff;">
+                        <div class="text-center">
+                            <i class="fas fa-check-circle text-gold" style="font-size:2.4rem; margin-bottom:10px;"></i>
+                            <h4>ক্যাশ অন ডেলিভারি / জিমে এসে পেমেন্ট</h4>
+                            <p style="font-size:0.88rem; color:var(--text-secondary); margin-bottom:14px;">সরাসরি প্রোডাক্ট হাতে পেয়ে অথবা জিমে উপস্থিত হয়ে পেমেন্ট সম্পন্ন করুন।</p>
+                            <button class="btn btn-gold btn-block" onclick="checkoutApp.processPayment('cod')">কনফার্ম করুন</button>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-dark btn-block mt-3" onclick="checkoutApp.goToStep(1)">পেছনে যান</button>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="checkout-panel" id="panel-3">
+                    <div id="processing-view" class="text-center py-3">
+                        <div class="spinner mb-3"></div>
+                        <h4 class="text-gold">প্রসেস হচ্ছে...</h4>
+                        <p>দয়া করে কিছুক্ষণ অপেক্ষা করুন।</p>
+                    </div>
+
+                    <div id="success-view" style="display:none; flex-direction:column; align-items:center; text-align:center;">
+                        <div style="width:70px;height:70px;border-radius:50%;background:rgba(0,230,118,0.15);color:var(--success-light);display:flex;align-items:center;justify-content:center;font-size:2.4rem;margin-bottom:14px;">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <h3 class="text-success mb-1">সফলভাবে সম্পন্ন হয়েছে!</h3>
+                        <p style="font-size:0.92rem;">আপনার রিকোয়েস্ট গ্রহণ করা হয়েছে।</p>
+
+                        <div class="invoice-card">
+                            <div class="invoice-row"><span>পেমেন্ট মেথড:</span> <strong id="inv-method">COD</strong></div>
+                            <div class="invoice-row"><span>নাম:</span> <span id="inv-name"></span></div>
+                            <div class="invoice-row"><span>ফোন:</span> <span id="inv-phone"></span></div>
+                            <div class="invoice-row"><span>সর্বমোট:</span> <strong class="text-gold font-en" id="inv-total">৳0</strong></div>
+                        </div>
+
+                        <button class="btn btn-primary btn-block mt-2" onclick="checkoutApp.finishOrder()">ড্যাশবোর্ডে ফিরে যান</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Three.js WebGL Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Main Application Script -->
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+export const BRAND_CONFIG = {
+  name: "Tarek's Smart Fitness Gym",
+  shortName: "TAREK'S",
+  legalName: "Tarek's Smart Fitness Gym & Exclusive Leather Zone",
+  tagline: 'Forge Strength. Carry Legacy.',
+  description:
+    "Premier high-performance training sanctuary at Boarding Field, Brahmanbaria — uniting certified strength & StairMaster conditioning, handcrafted full-grain men’s leather wallets, and commercial-grade gym machinery.",
+  foundedYear: 2020,
+  defaultCurrency: 'BDT' as 'USD' | 'BDT' | 'EUR',
+  currencies: {
+    USD: { symbol: '$', rate: 1, label: 'USD ($)' },
+    BDT: { symbol: '৳', rate: 120, label: 'BDT (৳)' },
+    EUR: { symbol: '€', rate: 0.92, label: 'EUR (€)' },
+  },
+  contact: {
+    phone: '01782-226189',
+    hotlineBd: '+880 1782-226189',
+    whatsapp: '8801782226189',
+    email: 'contact@tareksmartfitness.com',
+    address: 'Boarding Field (বোর্ডিং মাঠ), Brahmanbaria Sadar, Brahmanbaria',
+    hours: 'Daily: 07:00 AM – 11:00 PM',
+    coordinates: { lat: 23.9773, lng: 91.1115 },
+  },
+  pillars: {
+    gym: {
+      id: 'gym',
+      title: "TAREK'S SMART FITNESS",
+      subtitle: 'Gym Membership & Elite Performance',
+      accentHex: '#C6FF00',
+      badge: 'Pillar 01 // Strength',
+      href: '/gym',
+    },
+    wallets: {
+      id: 'wallets',
+      title: "TAREK'S LEATHER ZONE",
+      subtitle: 'Handcrafted Full-Grain Men’s Wallets',
+      accentHex: '#D4AF37',
+      badge: 'Pillar 02 // Legacy',
+      href: '/wallets',
+    },
+    machinery: {
+      id: 'machinery',
+      title: "TAREK'S GYM ARMORY",
+      subtitle: 'Commercial & Home Gym Machinery',
+      accentHex: '#FF5B1F',
+      badge: 'Pillar 03 // Engineering',
+      href: '/machinery',
+    },
+  },
+  social: {
+    instagram: 'https://instagram.com',
+    youtube: 'https://youtube.com',
+    facebook: 'https://www.facebook.com/profile.php?id=100082921402163',
+  },
+} as const;
+
+export const I18N_DICTIONARY = {
+  en: {
+    nav: {
+      home: 'Home',
+      gym: 'Gym & Tour',
+      workoutPlan: 'Workout Plan',
+      wallets: 'Wallet Store',
+      machinery: 'Machinery',
+      blog: 'Journal',
+      about: 'About',
+      contact: 'Contact',
+      dashboard: 'Account',
+      admin: 'Admin',
+    },
+    hero: {
+      badge: "TAREK'S SMART FITNESS GYM • 3D EXPERIENCE",
+      ctaPrimary: 'Explore The Ecosystem',
+      ctaGym: 'Book Free Trial',
+      ctaWallets: 'Shop Wallets',
+      ctaMachinery: 'Browse Machinery',
+    },
+  },
+  bn: {
+    nav: {
+      home: 'হোম',
+      gym: 'জিম ও 3D ট্যুর',
+      workoutPlan: 'ওয়ার্কআউট প্ল্যান',
+      wallets: 'ওয়ালেট স্টোর',
+      machinery: 'জিম মেশিনারি',
+      blog: 'জার্নাল',
+      about: 'আমাদের সম্পর্কে',
+      contact: 'যোগাযোগ',
+      dashboard: 'ড্যাশবোর্ড',
+      admin: 'অ্যাডমিন',
+    },
+    hero: {
+      badge: "তারেক'স স্মার্ট ফিটনেস জিম • থ্রি-ডি অভিজ্ঞতা",
+      ctaPrimary: 'ইকোসিস্টেম দেখুন',
+      ctaGym: 'ফ্রি ট্রায়াল বুক করুন',
+      ctaWallets: 'লেদার ওয়ালেট কিনুন',
+      ctaMachinery: 'মেশিনারি দেখুন',
+    },
+  },
+} as const;

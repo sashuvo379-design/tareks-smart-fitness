@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-obsidian: #0B0C10;
+  --bg-graphite: #171A24;
+  --bg-elevated: #232838;
+  --accent-volt: #C6FF00;
+  --accent-ember: #FF6B2B;
+  --accent-saddle: #D99B66;
+  --accent-gold: #F5C542;
+  --text-bone: #FFFFFF;
+  --text-muted: #CBD5E1;
+  --border-subtle: rgba(255, 255, 255, 0.18);
+}
+
+html {
+  background-color: var(--bg-obsidian);
+  color: var(--text-bone);
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-obsidian);
+  background-image:
+    radial-gradient(circle at 15% 15%, rgba(198, 255, 0, 0.05), transparent 35%),
+    radial-gradient(circle at 85% 25%, rgba(245, 197, 66, 0.05), transparent 35%),
+    radial-gradient(circle at 50% 75%, rgba(255, 107, 43, 0.04), transparent 40%);
+  color: var(--text-bone);
+  font-family: var(--font-sans), sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Enhance visibility of subtle borders across dark surfaces */
+.border-white\/5 {
+  border-color: rgba(255, 255, 255, 0.14) !important;
+}
+
+.border-white\/10 {
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.border-white\/15 {
+  border-color: rgba(255, 255, 255, 0.26) !important;
+}
+
+/* Subtle Film Grain Overlay */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 40;
+  opacity: 0.018;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.35) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0B0C10;
+}
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C6FF00;
+}

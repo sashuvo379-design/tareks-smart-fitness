@@ -1,0 +1,175 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String       @id @default(cuid())
+  name          String?
+  email         String       @unique
+  passwordHash  String?
+  role          String       @default("MEMBER") // MEMBER | ADMIN | TRAINER
+  image         String?
+  membership    Membership?
+  orders        Order[]
+  bookings      Booking[]
+  workoutLogs   WorkoutLog[]
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+}
+
+model Product {
+  id              String   @id @default(cuid())
+  slug            String   @unique
+  name            String
+  pillar          String   // "WALLET" | "MACHINERY"
+  category        String   // e.g. Bifold, Slim, Cardholder, Travel, RFID-safe | Treadmills, Racks, Benches, Barbells & Plates, Cable Machines, Cardio, Full Home-Gym Bundles
+  price           Float
+  compareAtPrice  Float?
+  currency        String   @default("USD")
+  rating          Float    @default(4.9)
+  reviewCount     Int      @default(24)
+  stock           Int      @default(15)
+  sku             String   @unique
+  shortDesc       String
+  description     String
+  image           String
+  gallery         String   // JSON array of local paths
+  colors          String   // JSON array of { name, hex }
+  materials       String   // JSON array of strings
+  specs           String   // JSON object of technical specifications (dimensions, weightCapacity, warranty, leatherGrade, rfid)
+  model3dType     String   // procedural 3D identifier ("bifold", "slim", "cardholder", "travel", "rfid", "rack", "treadmill", "bench", "barbell", "cable", "bike", "bundle")
+  featured        Boolean  @default(false)
+  allowEngraving  Boolean  @default(false)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model MembershipPlan {
+  id            String   @id @default(cuid())
+  slug          String   @unique
+  name          String
+  tier          String   // "IRON", "FORGE", "APEX"
+  monthlyPrice  Float
+  quarterlyPrice Float
+  yearlyPrice   Float
+  features      String   // JSON array
+  popular       Boolean  @default(false)
+}
+
+model Membership {
+  id          String   @id @default(cuid())
+  userId      String   @unique
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  planName    String
+  tier        String
+  billingCycle String  // MONTHLY | QUARTERLY | YEARLY
+  status      String   @default("ACTIVE")
+  qrCodeToken String   @unique
+  startDate   DateTime @default(now())
+  renewsAt    DateTime
+}
+
+model Trainer {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  name        String
+  role        String
+  specialty   String
+  experience  String
+  bio         String
+  avatar      String
+  certifications String // JSON array
+  rating      Float    @default(5.0)
+}
+
+model GymClass {
+  id          String    @id @default(cuid())
+  title       String
+  category    String    // "STRENGTH" | "HIIT" | "HYPERTROPHY" | "MOBILITY" | "CONDITIONING" | "RECOVERY"
+  dayOfWeek   String    // "MON" | "TUE" | "WED" | "THU" | "FRI" | "SAT" | "SUN"
+  startTime   String    // "07:00"
+  durationMin Int       @default(60)
+  trainerName String
+  room        String
+  capacity    Int       @default(20)
+  bookedCount Int       @default(12)
+  intensity   String    // "HIGH" | "EXTREME" | "MODERATE"
+  bookings    Booking[]
+}
+
+model Booking {
+  id          String   @id @default(cuid())
+  userId      String?
+  user        User?    @relation(fields: [userId], references: [id])
+  gymClassId  String?
+  gymClass    GymClass? @relation(fields: [gymClassId], references: [id])
+  guestName   String
+  guestEmail  String
+  guestPhone  String
+  bookingType String   @default("CLASS") // "CLASS" | "FREE_TRIAL" | "TRAINER_SESSION"
+  notes       String?
+  status      String   @default("CONFIRMED")
+  createdAt   DateTime @default(now())
+}
+
+model Order {
+  id              String   @id @default(cuid())
+  orderNumber     String   @unique
+  userId          String?
+  user            User?    @relation(fields: [userId], references: [id])
+  customerName    String
+  customerEmail   String
+  customerPhone   String
+  shippingAddress String
+  city            String
+  country         String
+  items           String   // JSON array of order items (with engraving, giftWrap, variant)
+  subtotal        Float
+  discount        Float    @default(0)
+  shippingCost    Float    @default(0)
+  total           Float
+  paymentMethod   String   // "STRIPE" | "BKASH" | "SSLCOMMERZ" | "COD"
+  paymentStatus   String   @default("PAID")
+  orderStatus     String   @default("PROCESSING")
+  couponCode      String?
+  createdAt       DateTime @default(now())
+}
+
+model BlogPost {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  title       String
+  excerpt     String
+  category    String   // "TRAINING" | "NUTRITION" | "WALLET_CARE" | "EQUIPMENT_GUIDE"
+  readTime    String
+  author      String
+  coverImage  String
+  content     String   // Rich Markdown / MDX content
+  publishedAt DateTime @default(now())
+}
+
+model Coupon {
+  id          String   @id @default(cuid())
+  code        String   @unique
+  discountPct Int
+  active      Boolean  @default(true)
+  description String
+}
+
+model WorkoutLog {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  exercise    String
+  sets        Int
+  reps        Int
+  weightKg    Float
+  oneRepMax   Float
+  loggedAt    DateTime @default(now())
+}
+
