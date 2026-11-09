@@ -22,7 +22,7 @@ export async function GET() {
   try {
     const orders = await prisma.order.findMany({
       orderBy: { createdAt: 'desc' },
-      take: 25,
+      take: 50,
     });
     return NextResponse.json({ orders });
   } catch (err) {
@@ -57,11 +57,33 @@ export async function POST(request: Request) {
       },
     });
 
-    return NextResponse.json({ ok: true, orderNumber: created.orderNumber });
+    return NextResponse.json({ ok: true, orderNumber: created.orderNumber, order: created });
   } catch (err) {
     return NextResponse.json(
       { ok: false, error: err instanceof Error ? err.message : 'Invalid order payload' },
       { status: 400 }
     );
+  }
+}
+
+export async function PATCH(request: Request) {
+  try {
+    const body = await request.json();
+    const { orderNumber, orderStatus, paymentStatus } = body;
+    if (!orderNumber) {
+      return NextResponse.json({ ok: false, error: 'Missing orderNumber' }, { status: 400 });
+    }
+
+    const updated = await prisma.order.update({
+      where: { orderNumber },
+      data: {
+        ...(orderStatus ? { orderStatus } : {}),
+        ...(paymentStatus ? { paymentStatus } : {}),
+      },
+    });
+
+    return NextResponse.json({ ok: true, order: updated });
+  } catch (err) {
+    return NextResponse.json({ ok: false, error: String(err) }, { status: 400 });
   }
 }

@@ -147,57 +147,12 @@ async function main() {
     });
   }
 
-  // 8. Seed Demo Orders for Analytics & Account Dashboard
-  await prisma.order.createMany({
-    data: [
-      {
-        orderNumber: 'IF-ORD-90412',
-        userId: member.id,
-        customerName: 'Alex Mercer',
-        customerEmail: 'athlete@ironforge.gg',
-        customerPhone: '+1 (555) 234-5678',
-        shippingAddress: '742 Evergreen Industrial Blvd',
-        city: 'Austin, TX',
-        country: 'United States',
-        items: JSON.stringify([
-          { name: 'Apex Heritage Bifold', sku: 'IF-WLT-001', qty: 1, price: 95, engraving: 'A.M. // VII', giftWrap: true },
-          { name: 'Titan B-800 Zero-Gap Adjustable FID Bench', sku: 'IF-MCH-005', qty: 1, price: 680 },
-        ]),
-        subtotal: 775,
-        discount: 0,
-        shippingCost: 0,
-        total: 775,
-        paymentMethod: 'STRIPE',
-        paymentStatus: 'PAID',
-        orderStatus: 'DELIVERED',
-      },
-      {
-        orderNumber: 'IF-ORD-90488',
-        userId: admin.id,
-        customerName: 'Apex Strength Club',
-        customerEmail: 'procurement@apexclub.io',
-        customerPhone: '+880 1714-712585',
-        shippingAddress: 'Boarding Field Commercial Zone',
-        city: 'Brahmanbaria',
-        country: 'Bangladesh',
-        items: JSON.stringify([
-          { name: 'Colossus PR-9000 Commercial Power Rack', sku: 'IF-MCH-001', qty: 2, price: 2450 },
-          { name: 'Ascent Pro X1 Commercial Stair Climber', sku: 'IF-MCH-004', qty: 1, price: 3490 },
-        ]),
-        subtotal: 8390,
-        discount: 839,
-        shippingCost: 150,
-        total: 7701,
-        paymentMethod: 'BKASH',
-        paymentStatus: 'PAID',
-        orderStatus: 'PROCESSING',
-        couponCode: 'IRON10',
-      },
-    ],
-  });
+  // 8. Clean Slate: Orders & Bookings initialized to 0 for real-time live portal
+  await prisma.order.deleteMany();
+  await prisma.booking.deleteMany();
 
   console.log(
-    `✅ Seed complete: ${SEED_WALLETS.length} Wallets, ${SEED_MACHINERY.length} Machines, ${SEED_TRAINERS.length} Trainers, ${SEED_CLASSES.length} Classes, ${SEED_BLOG_POSTS.length} Blog Posts.`
+    `✅ Seed complete: ${SEED_WALLETS.length} Wallets, ${SEED_MACHINERY.length} Machines, ${SEED_TRAINERS.length} Trainers, ${SEED_CLASSES.length} Classes, ${SEED_BLOG_POSTS.length} Blog Posts. Orders & Bookings initialized to 0.`
   );
 }
 
